@@ -1,0 +1,14 @@
+.back{
+    background-color: darkgrey;
+    height: 700px;
+}
+#addStockForm{
+    width:30%;
+    height:25rem;
+    margin: 0 auto; 
+    /* float: none; */
+
+}
+.unauth h1{
+   color:white
+}
