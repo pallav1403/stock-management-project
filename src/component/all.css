@@ -108,6 +108,13 @@ body{
 height: 10vh;
 background-color: rgb(110, 108, 108);
 }
+.searchbox{
+    margin:auto;
+  
+}
+.searchdiv{
+    padding-top:2vh;
+}
 #btn{
     margin-left: 20px ;
 }

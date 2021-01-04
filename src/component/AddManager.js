@@ -47,12 +47,12 @@ const handleSubmit= async e=>{
       password:users.password,
       phone:users.phone
     }
-    console.log("users",users)
+    // console.log("users",users)
   Axios.post('http://localhost:8000/manager',data).then(res=>{
-    console.log("managepostres",res)
+    // console.log("managepostres",res)
     history.push('/managers')
   }).catch(err=>{
-    console.log("error",err)
+    // console.log("error",err)
   })
 
 }

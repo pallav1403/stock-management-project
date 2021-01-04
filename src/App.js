@@ -25,11 +25,13 @@ import AddInvestor from './component/AddInvestor';
 import EditInvestor from './component/EditInvestor';
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
-import NavComp from './component/NavComp';
+// import NavComp from './component/NavComp';
 import NotAuthorized from './component/NotAuthorized';
 import Profile from './component/Profile';
 import AllInvestorsStock from './component/AllInvestorsStock';
 import EditProfile from './component/EditProfile';
+import EditStockLimit from './component/EditStockLimit';
+import SetStockLimit from './component/SetStockLimit';
  //Router is used to make the url in sync with Ui 
 
 
@@ -99,6 +101,8 @@ function App() {
   <Route  exact path="/edit-investors/:user_id" component={EditInvestor} />
   <Route  exact path="/unauthorized" component={NotAuthorized} />
   <Route  exact path="/profile" component={Profile} />
+  <Route  exact path="/setstocklimit" component={SetStockLimit} />
+  <Route  exact path="/edit-stock-limit/:stockcode" component={EditStockLimit} />
   <Route  exact path="/edit-profile/:user_id" component={EditProfile} />
   <Route  exact path="/all-investors-details" component={AllInvestorsStock} />
 </Switch>

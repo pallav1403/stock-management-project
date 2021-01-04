@@ -43,8 +43,8 @@ export default function AllInvestorsStock() {
     }
 
     const handleClick=(stockcode)=>{
-        Axios.delete(`http://localhost:8000/stocks/sellStock/${stockcode}`).then(res=>{
-          console.log(res)
+        Axios.delete(`http://localhost:8000/stocks/removeStock/${stockcode}`).then(res=>{
+          // console.log(res)
           getUsers()
         }).catch(err=>{
           console.log(err)

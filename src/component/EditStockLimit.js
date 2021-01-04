@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-
+// import {Link,Params,History, Redirect} from 'react-router-dom'
 import NavComp from './NavComp';
-export default class EditStock extends Component {
+export default class EditStockLimit extends Component {
     constructor(props){
         super(props)
         this.state={
             stock:{
-              stockcode:"",
-              name:"",
-              price:""
+              stocklimit:""
             
                  },
             show:true,  
@@ -36,7 +34,7 @@ export default class EditStock extends Component {
         }
         else if(token){
        
-          if(role!='manager'){
+          if(role!='admin'){
             this.props.history.push('/unauthorized')
           }
         }
@@ -50,10 +48,10 @@ export default class EditStock extends Component {
         e.preventDefault()
         const stockcode=this.props.match.params.stockcode
         // console.log("this is",stockcode)
-           axios.put(`http://localhost:8000/stocks/${stockcode}`,this.state.stock)
+           axios.put(`http://localhost:8000/stocks/limit/${stockcode}`,this.state.stock)
            .then(res=>{
               //  console.log("res is:",res)
-                this.props.history.push('/all-stocks')
+                this.props.history.push('/setstocklimit')
                 // this.setState({show:false})
            }).catch((err)=>{
                console.log('error occured  is',err)
@@ -70,27 +68,16 @@ export default class EditStock extends Component {
   <div className="card-header bg-warning">Add Stock</div>
   <div className="card-body">
   <form  onSubmit={this.postData}>
+  
   <div className="form-group row">
-    <label for="inputEmail3" className="col-sm-2 col-form-label">Name</label>
+    <label for="inputPassword3" className="col-sm-2 col-form-label">Limit</label>
     <div className="col-sm-8">
-      <input type="text" name="name" value={this.state.stock.name} className="form-control" id="stockNamme" onChange={this.dataChange}/>
-    </div>
-  </div>
-  <div className="form-group row">
-    <label for="inputPassword3" className="col-sm-2 col-form-label">Price</label>
-    <div className="col-sm-8">
-      <input type="text" name="price" value={this.state.stock.price} className="form-control" id="stockPrice" onChange={this.dataChange}/>
-    </div>
-  </div>
-  <div className="form-group row">
-    <label for="inputPassword3" className="col-sm-2 col-form-label">Code</label>
-    <div className="col-sm-8">
-      <input type="text" name="stockcode" value={this.state.stock.stockcode} className="form-control" id="stockcode" onChange={this.dataChange}/>
+      <input type="text" name="stocklimit" value={this.state.stock.stocklimit} className="form-control" id="stockcode" onChange={this.dataChange}/>
     </div>
   </div>
   <div className="form-group row">
     <div className="col-sm-10">
-    <Link  className="btn btn-dark border shadow float-right " to="/all-stocks">back</Link>
+    <Link  className="btn btn-dark border shadow float-right " to="/setstocklimit">back</Link>
       <input type="submit" className="btn btn-warning border shadow  float-right mr-2" />
     </div>
   </div>

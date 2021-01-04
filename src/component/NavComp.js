@@ -62,6 +62,9 @@ export default function NavComp(props) {
        <Link className ="nav-link" to="/investors">Investors </Link>
      </li>
      <li className ="nav-item active">
+       <Link className ="nav-link" to="/setstocklimit">SetLimit </Link>
+     </li>
+     <li className ="nav-item active">
        <Link className ="nav-link" to="/profile">Profile </Link>
      </li>
      </>):role==='investor' ? (<>

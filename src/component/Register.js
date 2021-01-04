@@ -111,7 +111,9 @@ handleChange=e=>{
       [e.target.name]:e.target.value
     })
 
-this.setState({formerrors,[name]:value},()=>console.log(formerrors))
+this.setState({formerrors,[name]:value},()=>{
+// console.log(formerrors)
+})
 }
 
     render(){

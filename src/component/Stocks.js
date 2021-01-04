@@ -15,8 +15,9 @@ export default function Stocks(props) {
   const [quantity,setQuantity]=useState({
     quantity:""
   })
-  const [previousQuantity,setPreviousQuantity]=useState([])
-
+  const [getSearchData,setSearchData]=useState({getSearchData:""})
+  
+ 
    useEffect(() => {
     isLoggedIn()
     getUsers()
@@ -35,6 +36,11 @@ export default function Stocks(props) {
 const handleChange=(e)=>{
   e.preventDefault()
      setQuantity({...quantity,[e.target.name]:e.target.value})
+}
+
+const handleSearch=(e)=>{
+  e.preventDefault()
+  setSearchData({...getSearchData,[e.target.name]:e.target.value})
 }
   // if(userData.user.users){
   //   var role=userData.user.users[0].role
@@ -82,9 +88,9 @@ const addStocks=(stockcode)=>{
     quantity:quantity.quantity,
     previousQuantity
   }
-  console.log(buyStockData.previousQuantity,"buystockdata")
+  // console.log(buyStockData.previousQuantity,"buystockdata")
   Axios.put(`http://localhost:8000/stocks/updateBuy/${stockcode}`,buyStockData).then(res=>{
-    console.log(res)
+    // console.log(res)
     if(res.data.error===false){
     history.push('/portfolio')
     }
@@ -115,9 +121,9 @@ const addStocks=(stockcode)=>{
 <NavComp/>
 <div className="container main bg-white border shadow mt-3">
 <div className="buyStock mt-3">
-  <h1>
-    List Of All Stocks
-  </h1>
+ <div className="searchdiv"> 
+  <input class="form-control col-3 searchbox" name="getSearchData" value={getSearchData.getSearchData} type="text" placeholder="Search stock by name" aria-label="Search" onChange={(e)=>{handleSearch(e)}}/>
+  </div>
 </div>
 <div className="stockTable">
 
@@ -132,16 +138,23 @@ const addStocks=(stockcode)=>{
     </tr>
   </thead>
   <tbody>
-  {stocks.map(stock=>{
+  {stocks.filter((stock)=>{
+    const search=getSearchData.getSearchData
+    if(search===""){
+      return stock;
+    }
+    else if(stock.name.toLowerCase().includes(search.toLowerCase())){
+      return stock;
+    }
+  }).map(stock=>{
            return (
-        <tr>
+        <tr key={stock.stockcode}>
             <td>{stock.stockcode}</td>
             <td>{stock.name}</td>
             <td>{stock.price}</td>
             <td>{stock.stocklimit}</td>
             <td>
             <span class="quantity buttons_added">
-	
   <input type="number" name="quantity"  value={quantity.quantity} class="input-text qty text" size="4" pattern="" inputmode="" placeholder=" enter quantity" onChange={(e)=>{handleChange(e)}}/>
   
 </span>

@@ -25,11 +25,11 @@ export default function Profile() {
     }
 
     const getUsers= ()=>{
-        console.log(user_id)
+        // console.log(user_id)
      Axios.get(`http://localhost:8000/manager/${user_id}`).then(res=>{
-        console.log("profile",res.data)
+        // console.log("profile",res.data)
         setUserData(res.data.users[0]);
-        console.log("users profile",users)
+        // console.log("users profile",users)
      }).catch(err=>{
          console.log("error",err)
      })
@@ -43,14 +43,14 @@ export default function Profile() {
             <div class="card border shadow col-4 row-4 m-auto profilecard">
    <img src="icons\profile.png" alt="" className="profileimage"/>
    <p class="card-text">{users.role}</p>
-  <ul class="list-group list-group-flush">
+  <ul class="list-group list-group-flush" key={users.name}>
     <li class="list-group-item">{`Name:${users.name}`}</li>
     <li class="list-group-item">{`Email:${users.email}`}</li>
     <li class="list-group-item">{`Phone:${users.phone}`}</li>
   </ul>
   <div class=" card-footer bg-color-secondary">
-    <Link to={`/edit-profile/${users.user_id}`} class="card-link">Edit Profile</Link><br/>
-    <Link to="/login" class="card-link">go to login</Link>
+    <Link className="btn btn-outline-warning btn-block" to={`/edit-profile/${users.user_id}`} >Edit Profile</Link><br/>
+   
   </div>
 </div>
         </div>

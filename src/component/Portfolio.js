@@ -44,7 +44,7 @@ export default function Portfolio(props) {
     // console.log("investorid",investorid)
   
      Axios.get(`http://localhost:8000/stocks/getInvestorStocks/${user_id}`).then(res=>{
-      console.log("buydata",res.data)
+      // console.log("buydata",res.data)
       setStock(res.data.stocks.reverse());
      }).catch(err=>{
        console.log("error:",err)
@@ -56,10 +56,10 @@ const handleClick=(stockcode,previousQuantity)=>{
     quantity:quantity.quantity,
     previousQuantity
   }
-  console.log('quantity',quantity)
+  // console.log('quantity',quantity)
   alert('are you sure')
   Axios.put(`http://localhost:8000/stocks/sellStock/${stockcode}`,sellStockData).then(res=>{
-    console.log("delete",res)
+    // console.log("delete",res)
     if(res.data.stocklimit){
       alert(`your can sell max of ${res.data.stocklimit} stocks!!`)
     }
@@ -90,7 +90,7 @@ const handleClick=(stockcode,previousQuantity)=>{
   <tbody>
   {stocks.map(stock=>{
            return (
-        <tr>
+        <tr key={stock.stockcode}>
             <td>{stock.ownername}</td>
             <td>{stock.stockcode}</td>
             <td>{stock.name}</td>

@@ -62,13 +62,13 @@ const history=useHistory()
     {
       users.map((user,index)=>
        (
-          <tr>
+          <tr key={user.email}>
       <th scope="row">{index+1}</th>
       <td>{user.name}</td>
       <td>{user.email}</td>
       <td>{user.phone}</td>
       <td>
-      <Link className="btn btn-outline-primary mr-2">Show</Link>
+      
       <Link className="btn btn-outline-warning mr-2" to={`/edit-investors/${user.user_id}`}>Edit</Link>
       <Link className="btn btn-outline-danger" onClick={()=>{handleClick(user.user_id)}}>Delete</Link>
       </td>
